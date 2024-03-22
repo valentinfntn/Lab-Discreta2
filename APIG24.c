@@ -17,14 +17,15 @@ Grafo ConstruirGrafo(){
         g->vecinos[i] = malloc((g->n)*sizeof(u32));
     }
     
-    while(1){
+    while(1)
+    {
         u32 vertice_x , vertice_y; // juntos forman el lado xy
         int is_eof = scanf("e %u %u", &vertice_x , &vertice_y);
+        if(is_eof == EOF) break;
+        // llenado de la matriz de vecinos en un mismo ciclo para ahorrar costo
         g->vecinos[vertice_x][(g->vertices[vertice_x].grado)] = vertice_y; // con vertice_x un numero entre 0 y n por lo tanto no se sale de la matriz
         g->vecinos[vertice_y][(g->vertices[vertice_y].grado)] = vertice_x; // con vertice_y un numero entre 0 y n por lo tanto no se sale de la matriz
         g->vertices[vertice_x].grado += 1;
-        g->vertices[vertice_y].grado += 1;
-        
-        if(is_eof == EOF) break;
+        g->vertices[vertice_y].grado += 1;    
     }
 }
