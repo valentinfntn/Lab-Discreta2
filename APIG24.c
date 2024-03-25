@@ -5,7 +5,8 @@
 Grafo ConstruirGrafo()
 {
     u32 numero_de_vertices , numero_de_lados;
-    scanf("p edge %u %u", &numero_de_vertices , &numero_de_lados);
+    int error_code = scanf("p edge %u %u", &numero_de_vertices , &numero_de_lados);
+    if(error_code != 2) exit(EXIT_FAILURE);
     Grafo g = malloc(sizeof(struct _grafo));
     g->n = numero_de_vertices;
     g->m = numero_de_lados;
