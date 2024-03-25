@@ -1,11 +1,11 @@
 #include "APIG24.h"
 #include "EstructuraGrafo24.h"
-
+#include <limits.h>
 
 Grafo ConstruirGrafo()
 {
     u32 numero_de_vertices , numero_de_lados;
-    scanf("p edge %u %u ", &numero_de_vertices , &numero_de_lados);
+    scanf("p edge %u %u", &numero_de_vertices , &numero_de_lados);
     Grafo g = malloc(sizeof(struct _grafo));
     g->n = numero_de_vertices;
     g->m = numero_de_lados;
@@ -18,19 +18,20 @@ Grafo ConstruirGrafo()
     {
         g->vertices[i].color = 0;
         g->vertices[i].grado = 0;
-        g->vecinos[i] = malloc((g->n)*sizeof(u32));
+        g->vecinos[i] = calloc((g->n),sizeof(u32));
     }
     for (u32 i = 0u; i < g->m; ++i)
     {
         u32 vertice_x , vertice_y; // juntos forman el lado xy
         int error_code = scanf("\ne %u %u", &vertice_x , &vertice_y);
-        if(error_code != 3) exit(EXIT_FAILURE);
+        if(error_code != 2) exit(EXIT_FAILURE);
         // llenado de la matriz de vecinos en un mismo ciclo para ahorrar costo
         g->vecinos[vertice_x][(g->vertices[vertice_x].grado)] = vertice_y; // con vertice_x un numero entre 0 y n por lo tanto no se sale de la matriz
         g->vecinos[vertice_y][(g->vertices[vertice_y].grado)] = vertice_x; // con vertice_y un numero entre 0 y n por lo tanto no se sale de la matriz
         g->vertices[vertice_x].grado += 1;
         g->vertices[vertice_y].grado += 1;
     }
+    // calculo delta
     for (u32 i = 0u; i < g->n; ++i)
     {
         if(g->delta < g->vertices[i].grado){
@@ -88,15 +89,19 @@ color Color(u32 i,Grafo g)
     }
     else
     {
-        return 0;
+        return INT_MAX;
     }
 }
 
 u32 Vecino(u32 j,u32 i,Grafo g)
 {
-    if(j<=g->vertices[i].grado)
+    if(i < g->n && j < g->vertices[i].grado)
     {
         return g->vecinos[i][j];
+    }
+    else
+    {
+        return INT_MAX;
     }
 }
 
