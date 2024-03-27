@@ -19,7 +19,7 @@ Grafo ConstruirGrafo()
     {
         g->vertices[i].color = 0;
         g->vertices[i].grado = 0;
-        g->vecinos[i] = calloc((g->n),sizeof(u32));
+        g->vecinos[i] = malloc((g->n)*sizeof(u32));
     }
     for (u32 i = 0u; i < g->m; ++i)
     {
