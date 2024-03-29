@@ -66,7 +66,8 @@ Grafo ConstruirGrafo()
     // calculo delta
     for (u32 i = 0u; i < g->n; ++i)
     {
-        if(g->delta < g->vertices[i].grado){
+        if(g->delta < g->vertices[i].grado)
+        {
             g->delta = g->vertices[i].grado;
         }
     }
@@ -88,34 +89,55 @@ void DestruirGrafo(Grafo g)
 
 u32 NumeroDeVertices(Grafo g)
 {
-    return g->n;
+    if(g != NULL)
+    {
+        return g->n;
+    }
+    else
+    {
+        return 0u; 
+    }
 }
 
 u32 NumeroDeLados(Grafo g)
 {
-    return g->m;
+    if(g != NULL)
+    {
+        return g->m;
+    }
+    else
+    {
+        return 0u;  
+    }
 }
 
 u32 Delta(Grafo g)
 {
-    return g->delta;
+    if(g != NULL)
+    {
+        return g->delta;
+    }
+    else
+    {
+        return 0u;    
+    }
 }
 
 u32 Grado(u32 i,Grafo g)
 {
-    if(i < g->n)
+    if(g != NULL && i < g->n)
     {
         return g->vertices[i].grado;
     }
     else
     {
-        return 0;
+        return 0u;
     }
 }
 
 color Color(u32 i,Grafo g)
 {
-    if(i < g->n)
+    if(g != NULL && i < g->n)
     {
         return g->vertices[i].color;
     }
@@ -127,7 +149,7 @@ color Color(u32 i,Grafo g)
 
 u32 Vecino(u32 j,u32 i,Grafo g)
 {
-    if(i < g->n && j < g->vertices[i].grado)
+    if(g != NULL && i < g->n && j < g->vertices[i].grado)
     {
         return g->vecinos[i][j];
     }
@@ -139,7 +161,7 @@ u32 Vecino(u32 j,u32 i,Grafo g)
 
 void AsignarColor(color x,u32 i,Grafo  g)
 {
-    if(i<g->n)
+    if(g != NULL && i < g->n)
     {
         g->vertices[i].color = x;
     }
@@ -147,17 +169,22 @@ void AsignarColor(color x,u32 i,Grafo  g)
 
 void ExtraerColores(Grafo g,color* c)
 {
-    for (u32 i = 0; i < g->n; ++i)
+    if(g != NULL)
     {
-        c[i] = g->vertices[i].color;
+        for (u32 i = 0; i < g->n; ++i)
+        {
+            c[i] = g->vertices[i].color;
+        }
     }
 }
 
 void ImportarColores(color* c,Grafo  g)
 {
-    for (u32 i = 0; i < g->n; ++i)
+    if(g != NULL)
     {
-        g->vertices[i].color = c[i];
+        for (u32 i = 0; i < g->n; ++i)
+        {
+            g->vertices[i].color = c[i];
+        }
     }
-    
 }
