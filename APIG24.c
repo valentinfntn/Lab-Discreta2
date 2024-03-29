@@ -77,14 +77,17 @@ Grafo ConstruirGrafo()
 
 void DestruirGrafo(Grafo g)
 {
-    for (u32 i = 0; i < g->n; ++i)
+    if(g != NULL) 
     {
-        free(g->vecinos[i]);
+        for (u32 i = 0; i < g->n; ++i)
+        {
+            free(g->vecinos[i]);
+        }
+        free(g->vecinos);
+        free(g->vertices);
+        free(g);
+        g = NULL;
     }
-    free(g->vecinos);
-    free(g->vertices);
-    free(g);
-    g = NULL;
 }
 
 u32 NumeroDeVertices(Grafo g)
