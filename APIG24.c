@@ -36,13 +36,13 @@ Grafo ConstruirGrafo()
         // llenado de la matriz de vecinos en un mismo ciclo para ahorrar costo
         g->vecinos[vertice_x][(g->vertices[vertice_x].grado)] = vertice_y; // con vertice_x un numero entre 0 y n por lo tanto no se sale de la matriz
         g->vecinos[vertice_y][(g->vertices[vertice_y].grado)] = vertice_x; // con vertice_y un numero entre 0 y n por lo tanto no se sale de la matriz
-        if(g->vertices[vertice_x].grado < g->vertices[vertice_x].size)
+        if(g->vertices[vertice_x].grado >= g->vertices[vertice_x].size)
         {
             g->vertices[vertice_x].size = 2*g->vertices[vertice_x].size;
             g->vecinos[vertice_x] = realloc(g->vecinos[vertice_x] , g->vertices[vertice_x].size* sizeof(u32));
         }
         g->vertices[vertice_x].grado += 1;
-        if(g->vertices[vertice_y].grado < g->vertices[vertice_y].size)
+        if(g->vertices[vertice_y].grado >= g->vertices[vertice_y].size)
         {
             g->vertices[vertice_y].size = 2*g->vertices[vertice_y].size;
             g->vecinos[vertice_y] = realloc(g->vecinos[vertice_y] , g->vertices[vertice_y].size* sizeof(u32));
