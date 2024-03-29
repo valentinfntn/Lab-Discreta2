@@ -2,7 +2,7 @@
 #include "EstructuraGrafo24.h"
 #include <limits.h>
 
-#define SIZE 200
+#define SIZE 200 // recomendado para poca memoria ram 2-4gb : 200, en caso de tener mas memoria se puede aumentar este numero
 
 Grafo ConstruirGrafo()
 {
@@ -36,6 +36,8 @@ Grafo ConstruirGrafo()
         // llenado de la matriz de vecinos en un mismo ciclo para ahorrar costo
         g->vecinos[vertice_x][(g->vertices[vertice_x].grado)] = vertice_y; // con vertice_x un numero entre 0 y n por lo tanto no se sale de la matriz
         g->vecinos[vertice_y][(g->vertices[vertice_y].grado)] = vertice_x; // con vertice_y un numero entre 0 y n por lo tanto no se sale de la matriz
+        
+        // si la cantidad de vecinos llega a la cantidad SIZE definidad arriba esta cantidad se duplica para darle mas espacio al array
         if(g->vertices[vertice_x].grado >= g->vertices[vertice_x].size)
         {
             g->vertices[vertice_x].size = 2*g->vertices[vertice_x].size;
