@@ -8,6 +8,7 @@ typedef unsigned int color;
 typedef struct _data {
     color color;
     u32 grado; // logintud del array vecino para cada vertice.
+    u32 size;
 }data;
 
 typedef struct _grafo {
