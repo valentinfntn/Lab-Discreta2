@@ -6,8 +6,17 @@
 
 Grafo ConstruirGrafo()
 {
+    char inicio;
+    // busca si hay lineas comentario en el archivo y las saltea
+    while (scanf(" %c",&inicio) == 1 && inicio == 'c')
+    {
+        while((char)getchar() != '\n');
+    }
+    // si encuentra algo distinto de comentario o el inicio del grafo, devuelve grafo vacio
+    if(inicio != 'p') return NULL;
+
     u32 numero_de_vertices , numero_de_lados;
-    int error_code = scanf("p edge %u %u", &numero_de_vertices , &numero_de_lados);
+    int error_code = scanf(" edge %u %u", &numero_de_vertices , &numero_de_lados);
     if(error_code != 2)
     {
         return NULL;
